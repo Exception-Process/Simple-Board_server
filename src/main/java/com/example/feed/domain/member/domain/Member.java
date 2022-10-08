@@ -1,6 +1,7 @@
 package com.example.feed.domain.member.domain;
 
 import com.example.feed.domain.board.domain.Board;
+import com.example.feed.domain.member.domain.types.Authority;
 import com.example.feed.domain.user.domain.User;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -29,10 +30,14 @@ public class Member {
     @Column(nullable = false, length = 20)
     private String name;
 
+    @Column(nullable = false)
+    private Authority authority;
+
     @Builder
-    public Member(User user, Board board, String name) {
+    public Member(User user, Board board, String name, Authority authority) {
         this.user = user;
         this.board = board;
         this.name = name;
+        this.authority = authority;
     }
 }
