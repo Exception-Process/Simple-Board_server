@@ -12,6 +12,6 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 public class JmsProperties {
 
     private final String username;
-    private final Integer authExp;
+    private final Long authExp;
     private final String suffix;
 }

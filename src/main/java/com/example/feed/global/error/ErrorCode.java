@@ -11,6 +11,7 @@ public enum ErrorCode {
 
     INVALID_PASSWORD(401, "invalid password"),
     EXPIRED_REFRESH_TOKEN(401, "Expired Refresh Token"),
+    BAD_AUTH_CODE(401, "Bad Auth Code"),
     EXPIRED_JWT(401, "Expired Jwt"),
     INVALID_JWT(401, "Invalid Jwt"),
     INVALID_TOKEN(401, "Invalid Token"),
