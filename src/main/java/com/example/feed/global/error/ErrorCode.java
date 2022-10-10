@@ -22,7 +22,8 @@ public enum ErrorCode {
     REFRESH_TOKEN_NOT_FOUND(404, "Refresh Token Not Found"),
     USER_NOT_FOUND(404, "user not found"),
     MAIL_SEND_FAIL(404, "Mail Send Fail"),
-    FEED_NOT_FOUND(404, "application not found"),
+    FEED_NOT_FOUND(404, "feed not found"),
+    BOARD_NOT_FOUND(404, "board not found"),
 
     USER_ALREADY_EXIST(409, "User Already Exist"),
     LIKE_ALREADY_EXIST(409, "Like Already Exist"),
