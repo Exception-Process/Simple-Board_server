@@ -21,13 +21,17 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false, length = 20)
     private String title;
 
+    @Column(nullable = false, length = 100)
+    private String introduction;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "admin_id", nullable = false)
+    @JoinColumn(name = "admin_id", nullable = false, unique = true)
     private User admin;
 
     @Builder
-    public Board(String title, User admin) {
+    public Board(String title, String introduction, User admin) {
         this.title = title;
+        this.introduction = introduction;
         this.admin = admin;
     }
 }
