@@ -18,6 +18,7 @@ public enum ErrorCode {
     UNVERIFIED_EMAIL(401, "Unverified Email"),
     PASSWORD_MIS_MATCH(401, "Password Mis Match"),
     CANNOT_SEE_FEED(401, "Cannot See Feed"),
+    BAD_ADMIN(401, "bad admin"),
 
     REFRESH_TOKEN_NOT_FOUND(404, "Refresh Token Not Found"),
     USER_NOT_FOUND(404, "user not found"),
