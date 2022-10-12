@@ -25,6 +25,7 @@ public enum ErrorCode {
     MAIL_SEND_FAIL(404, "Mail Send Fail"),
     FEED_NOT_FOUND(404, "feed not found"),
     BOARD_NOT_FOUND(404, "board not found"),
+    MEMBER_NOT_FOUND(404, "Member Not Found"),
 
     USER_ALREADY_EXIST(409, "User Already Exist"),
     LIKE_ALREADY_EXIST(409, "Like Already Exist"),
