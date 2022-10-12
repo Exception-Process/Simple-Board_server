@@ -33,11 +33,19 @@ public class Member {
     @Column(nullable = false)
     private Authority authority;
 
+    @Column(nullable = false)
+    private boolean join;
+
     @Builder
-    public Member(User user, Board board, String name, Authority authority) {
+    public Member(User user, Board board, String name, Authority authority, boolean join) {
         this.user = user;
         this.board = board;
         this.name = name;
         this.authority = authority;
+        this.join = join;
+    }
+
+    public void permitJoin() {
+        this.join = true;
     }
 }
