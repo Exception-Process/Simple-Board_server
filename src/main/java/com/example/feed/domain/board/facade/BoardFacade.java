@@ -25,4 +25,10 @@ public class BoardFacade {
             throw BadAdminException.EXCEPTION;
         return board;
     }
+
+    public Board getBoardByAdmin(User admin) {
+        boardRepository.findByAdmin(admin)
+                .orElseThrow(() -> BadAdminException.EXCEPTION);
+    }
+
 }
