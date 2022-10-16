@@ -1,6 +1,6 @@
-package com.example.feed.domain.member.service;
+package com.example.feed.domain.board.service;
 
-import com.example.feed.domain.member.controller.dto.request.JoinBoardMemberRequest;
+import com.example.feed.domain.board.controller.dto.request.JoinBoardMemberRequest;
 import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.member.domain.Member;
