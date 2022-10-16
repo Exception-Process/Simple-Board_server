@@ -19,13 +19,6 @@ public class BoardFacade {
                 .orElseThrow(() -> BoardNotFoundException.EXCEPTION);
     }
 
-    public Board getBoardByIdAndCheckAdmin(User admin, Long id) {
-        Board board = getBoardById(id);
-        if (!board.getAdmin().equals(admin))
-            throw BadAdminException.EXCEPTION;
-        return board;
-    }
-
     public Board getBoardByAdmin(User admin) {
         return boardRepository.findByAdmin(admin)
                 .orElseThrow(() -> BadAdminException.EXCEPTION);
