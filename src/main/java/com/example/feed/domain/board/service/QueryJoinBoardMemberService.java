@@ -1,4 +1,4 @@
-package com.example.feed.domain.member.service;
+package com.example.feed.domain.board.service;
 
 import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.board.facade.BoardFacade;
