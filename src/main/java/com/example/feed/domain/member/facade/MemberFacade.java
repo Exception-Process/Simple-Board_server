@@ -1,8 +1,10 @@
 package com.example.feed.domain.member.facade;
 
+import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.member.domain.Member;
 import com.example.feed.domain.member.domain.repository.MemberRepository;
 import com.example.feed.domain.member.exception.MemberNotFoundException;
+import com.example.feed.domain.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,11 @@ public class MemberFacade {
 
     public Member getMemberById(Long id) {
         return memberRepository.findById(id)
+                .orElseThrow(() -> MemberNotFoundException.EXCEPTION);
+    }
+
+    public Member getMemberByBoardAndUser(Board board, User user) {
+        return memberRepository.findByUserAndBoard(user, board)
                 .orElseThrow(() -> MemberNotFoundException.EXCEPTION);
     }
 }

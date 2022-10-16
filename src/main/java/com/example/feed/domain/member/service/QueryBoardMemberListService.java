@@ -6,30 +6,24 @@ import com.example.feed.domain.member.controller.dto.response.MemberElement;
 import com.example.feed.domain.member.controller.dto.response.MemberListResponse;
 import com.example.feed.domain.member.domain.Member;
 import com.example.feed.domain.member.domain.repository.MemberRepository;
-import com.example.feed.domain.user.domain.User;
-import com.example.feed.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class QueryJoinBoardMemberService {
+public class QueryBoardMemberListService {
 
     private final MemberRepository memberRepository;
-    private final UserFacade userFacade;
     private final BoardFacade boardFacade;
 
-    @Transactional(readOnly = true)
-    public MemberListResponse execute() {
+    public MemberListResponse execute(Long boardId) {
 
-        User admin = userFacade.getUser();
-        Board board = boardFacade.getBoardByAdmin(admin);
+        Board board = boardFacade.getBoardById(boardId);
 
-        List<MemberElement> memberList = memberRepository.findAllByBoardAndJoin(board, true)
+        List<MemberElement> memberList = memberRepository.findAllByBoard(board)
                 .stream()
                 .map(this::memberListBuilder)
                 .collect(Collectors.toList());

@@ -48,4 +48,8 @@ public class Member {
     public void permitJoin() {
         this.join = true;
     }
+
+    public void update(String name) {
+        this.name = name;
+    }
 }

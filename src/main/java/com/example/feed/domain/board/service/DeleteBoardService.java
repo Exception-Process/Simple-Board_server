@@ -21,7 +21,7 @@ public class DeleteBoardService {
     public void execute(Long id) {
 
         User admin = userFacade.getUser();
-        Board board = boardFacade.getBoardByIdAndCheckAdmin(admin, id);
+        Board board = boardFacade.getBoardByAdmin(admin);
         boardRepository.delete(board);
     }
 }
