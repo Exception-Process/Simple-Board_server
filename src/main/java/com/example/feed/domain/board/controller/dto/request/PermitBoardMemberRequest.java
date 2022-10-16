@@ -1,4 +1,4 @@
-package com.example.feed.domain.member.controller.dto.request;
+package com.example.feed.domain.board.controller.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
