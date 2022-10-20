@@ -1,7 +1,7 @@
 package com.example.feed.domain.feed.domain;
 
 import com.example.feed.domain.board.domain.Board;
-import com.example.feed.domain.user.domain.User;
+import com.example.feed.domain.member.domain.Member;
 import com.example.feed.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -26,22 +26,32 @@ public class Feed extends BaseTimeEntity {
     private String content;
 
     @Column(nullable = false)
+    private boolean nonMemberShowing;
+
+    @Column(nullable = false)
     private Integer likeCounts;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 
     @Builder
-    public Feed(String title, String content, User user, Integer likeCounts, Board board) {
+    public Feed(String title, String content, boolean nonMemberShowing, Integer likeCounts, Member member, Board board) {
         this.title = title;
         this.content = content;
-        this.user = user;
+        this.nonMemberShowing = nonMemberShowing;
         this.likeCounts = likeCounts;
+        this.member = member;
         this.board = board;
+    }
+
+    public void update(String title, String content, boolean nonMemberShowing) {
+        this.title = title;
+        this.content = content;
+        this.nonMemberShowing = nonMemberShowing;
     }
 }
