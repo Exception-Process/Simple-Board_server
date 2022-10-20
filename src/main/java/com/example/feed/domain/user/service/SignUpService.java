@@ -19,8 +19,6 @@ public class SignUpService {
 
     public void execute(SignUpRequest request) {
 
-        authCodeFacade.checkEmailDomain(request.getEmail());
-
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw UserAlreadyExistException.EXCEPTION;
         }

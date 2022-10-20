@@ -20,8 +20,6 @@ public class SendSignUpAuthCodeService {
     public void execute(SendAuthCodeRequest request) {
         String email = request.getEmail();
 
-        authCodeFacade.checkEmailDomain(email);
-
         if (userFacade.emailIsExist(email)) {
             throw UserAlreadyExistException.EXCEPTION;
         }
