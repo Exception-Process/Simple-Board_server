@@ -36,12 +36,6 @@ public class AuthCodeFacade {
                 .orElseThrow(() -> UnverifiedEmailException.EXCEPTION);
     }
 
-    public void checkEmailDomain(String email) {
-        if (!email.endsWith(jmsProperties.getSuffix())) {
-            throw BadEmailException.EXCEPTION;
-        }
-    }
-
     public void sendMail(String email) {
         String code = createRandomCode();
         AuthCode authCode = getAuthCode(email, code);
