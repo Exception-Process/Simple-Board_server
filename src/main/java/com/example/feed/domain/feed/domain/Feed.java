@@ -54,4 +54,12 @@ public class Feed extends BaseTimeEntity {
         this.content = content;
         this.nonMemberShowing = nonMemberShowing;
     }
+
+    public void addLikeCounts() {
+        this.likeCounts += 1;
+    }
+
+    public void subLikeCounts() {
+        this.likeCounts -= 1;
+    }
 }

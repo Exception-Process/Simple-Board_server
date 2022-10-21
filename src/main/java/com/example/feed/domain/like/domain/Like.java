@@ -1,7 +1,7 @@
 package com.example.feed.domain.like.domain;
 
 import com.example.feed.domain.feed.domain.Feed;
-import com.example.feed.domain.user.domain.User;
+import com.example.feed.domain.member.domain.Member;
 import com.example.feed.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -20,16 +20,16 @@ public class Like extends BaseTimeEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "feed_id", nullable = false)
     private Feed feed;
 
     @Builder
-    public Like(User user, Feed feed) {
-        this.user = user;
+    public Like(Member member, Feed feed) {
+        this.member = member;
         this.feed = feed;
     }
 }
