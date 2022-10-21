@@ -21,6 +21,7 @@ public class FeedController {
     private final QueryFeedListService queryFeedListService;
     private final QueryFeedDetailService queryFeedDetailService;
     private final UpdateFeedService updateFeedService;
+    private final QueryLikedFeedService queryLikedFeedService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{board-id}")
@@ -28,6 +29,7 @@ public class FeedController {
         createFeedService.execute(request, boardId);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{feed-id}")
     public void delete(@PathVariable("feed-id") Long feedId) {
         deleteFeedService.execute(feedId);
@@ -47,5 +49,10 @@ public class FeedController {
     @PatchMapping("/{feed-id}")
     public void update(@RequestBody @Valid UpdateFeedRequest request, @PathVariable("feed-id") Long feedId) {
         updateFeedService.execute(request, feedId);
+    }
+
+    @GetMapping("/{board-id}")
+    public FeedListResponse likedList(@PathVariable("board-id") Long boardId) {
+        return queryLikedFeedService.execute(boardId);
     }
 }
