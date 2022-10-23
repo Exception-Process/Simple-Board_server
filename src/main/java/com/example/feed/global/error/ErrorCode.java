@@ -27,6 +27,7 @@ public enum ErrorCode {
     BOARD_NOT_FOUND(404, "board not found"),
     MEMBER_NOT_FOUND(404, "Member Not Found"),
     FEED_NOT_LIKED(404, "feed not liked"),
+    COMMENT_NOT_FOUND(404, "Comment Not Found"),
 
     USER_ALREADY_EXIST(409, "User Already Exist"),
     LIKE_ALREADY_EXIST(409, "Like Already Exist"),
