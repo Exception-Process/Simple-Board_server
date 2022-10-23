@@ -1,7 +1,7 @@
 package com.example.feed.domain.comment.domain;
 
 import com.example.feed.domain.feed.domain.Feed;
-import com.example.feed.domain.user.domain.User;
+import com.example.feed.domain.member.domain.Member;
 import com.example.feed.global.entity.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -21,7 +21,7 @@ public class Comment extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "feed_id", nullable = false)
@@ -31,9 +31,13 @@ public class Comment extends BaseTimeEntity {
     private String comment;
 
     @Builder
-    public Comment(User user, Feed feed, String comment) {
-        this.user = user;
+    public Comment(Member member, Feed feed, String comment) {
+        this.member = member;
         this.feed = feed;
+        this.comment = comment;
+    }
+
+    public void update(String comment) {
         this.comment = comment;
     }
 }
