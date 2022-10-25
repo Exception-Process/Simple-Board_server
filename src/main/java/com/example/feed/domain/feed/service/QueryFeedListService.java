@@ -26,7 +26,7 @@ public class QueryFeedListService {
 
         Board board = boardFacade.getBoardById(boardId);
 
-        List<FeedElement> feedList = feedRepository.findAllByBoard(board)
+        List<FeedElement> feedList = feedRepository.findAllByBoardOrderByCreatedAtDesc(board)
                 .stream()
                 .map(this::feedListBuild)
                 .collect(Collectors.toList());
