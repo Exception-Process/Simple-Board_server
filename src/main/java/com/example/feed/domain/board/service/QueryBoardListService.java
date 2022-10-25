@@ -33,6 +33,7 @@ public class QueryBoardListService {
                 .boardId(board.getId())
                 .title(board.getTitle())
                 .adminName(board.getAdmin().getName())
+                .boardMemberCounts(board.getBoardMemberCounts())
                 .build();
     }
 }

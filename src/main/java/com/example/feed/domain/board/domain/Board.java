@@ -24,18 +24,30 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false, length = 100)
     private String introduction;
 
+    @Column(nullable = false)
+    private Integer boardMemberCounts;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "admin_id", nullable = false, unique = true)
     private User admin;
 
     @Builder
-    public Board(String title, String introduction, User admin) {
+    public Board(String title, String introduction, Integer boardMemberCounts, User admin) {
         this.title = title;
         this.introduction = introduction;
+        this.boardMemberCounts = boardMemberCounts;
         this.admin = admin;
     }
 
     public void update(String introduction) {
         this.introduction = introduction;
+    }
+
+    public void addBoardMemberCounts() {
+        this.boardMemberCounts += 1;
+    }
+
+    public void subBoardMemberCounts() {
+        this.boardMemberCounts -= 1;
     }
 }

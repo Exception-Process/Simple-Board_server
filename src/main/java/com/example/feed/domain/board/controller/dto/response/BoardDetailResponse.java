@@ -12,6 +12,7 @@ public class BoardDetailResponse {
     private Long boardId;
     private String title;
     private String introduction;
+    private Integer boardMemberCounts;
     private String adminName;
     private LocalDateTime createdAt;
 }

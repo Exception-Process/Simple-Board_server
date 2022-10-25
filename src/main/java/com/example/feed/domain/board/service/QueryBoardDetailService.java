@@ -22,6 +22,7 @@ public class QueryBoardDetailService {
                 .boardId(board.getId())
                 .title(board.getTitle())
                 .introduction(board.getIntroduction())
+                .boardMemberCounts(board.getBoardMemberCounts())
                 .adminName(board.getAdmin().getName())
                 .createdAt(board.getCreatedAt())
                 .build();
