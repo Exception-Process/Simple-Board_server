@@ -27,6 +27,7 @@ public class CreateBoardService {
                 .title(request.getTitle())
                 .introduction(request.getIntroduction())
                 .boardMemberCounts(1)
+                .boardProfileImage(request.getBoardProfileImage())
                 .admin(user)
                 .build()
         );
@@ -37,6 +38,7 @@ public class CreateBoardService {
                 .authority(Authority.ADMIN)
                 .join(true)
                 .name(request.getAdminName())
+                .memberProfileImage(user.getUserProfileImage())
                 .build()
         );
     }

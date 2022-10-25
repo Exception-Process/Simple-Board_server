@@ -8,6 +8,7 @@ import com.example.feed.domain.member.domain.repository.MemberRepository;
 import com.example.feed.domain.member.domain.types.Authority;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
+import com.example.feed.infrastructure.image.DefaultImage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ public class JoinBoardMemberService {
                 .user(user)
                 .name(request.getName())
                 .authority(Authority.USER)
+                .memberProfileImage(user.getUserProfileImage())
                 .join(false)
                 .build()
         );

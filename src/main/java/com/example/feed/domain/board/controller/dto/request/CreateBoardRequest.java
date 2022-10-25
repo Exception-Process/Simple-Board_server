@@ -18,6 +18,9 @@ public class CreateBoardRequest {
     @Size(min = 1, max = 100, message = "소개글은 1~100자 사이여야되고, 공백이나 NULL을 포함할 수 없습니다.")
     private String introduction;
 
+    @NotBlank(message = "imageUrl은 공백이나 널을 포함 할 수 없습니다.")
+    private String boardProfileImage;
+
     @NotBlank
     @Size(min = 1, max = 20, message = "어드민 이름은 1~20자 사이여야되고, 공백이나 NULL을 포함할 수 없습니다.")
     private String adminName;
