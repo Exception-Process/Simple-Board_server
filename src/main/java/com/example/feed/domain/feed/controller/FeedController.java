@@ -1,6 +1,7 @@
 package com.example.feed.domain.feed.controller;
 
 import com.example.feed.domain.feed.controller.dto.request.CreateFeedRequest;
+import com.example.feed.domain.feed.controller.dto.request.SearchFeedRequest;
 import com.example.feed.domain.feed.controller.dto.request.UpdateFeedRequest;
 import com.example.feed.domain.feed.controller.dto.response.FeedDetailResponse;
 import com.example.feed.domain.feed.controller.dto.response.FeedListResponse;
@@ -22,6 +23,7 @@ public class FeedController {
     private final QueryFeedDetailService queryFeedDetailService;
     private final UpdateFeedService updateFeedService;
     private final QueryLikedFeedService queryLikedFeedService;
+    private final SearchFeedService searchFeedService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{board-id}")
@@ -54,5 +56,10 @@ public class FeedController {
     @GetMapping("/{board-id}")
     public FeedListResponse likedList(@PathVariable("board-id") Long boardId) {
         return queryLikedFeedService.execute(boardId);
+    }
+
+    @GetMapping("/search/{board-id}")
+    public FeedListResponse search(@PathVariable("board-id") Long boardId, @RequestBody @Valid SearchFeedRequest request) {
+        return searchFeedService.execute(boardId, request);
     }
 }
