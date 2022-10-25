@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   jpa:
     hibernate:
       ddl-auto: update
@@ -7,9 +9,9 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
   datasource:
-    url:
-    username:
-    password:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   redis:
@@ -32,7 +34,6 @@ spring:
             required: true
 
     auth-exp: ${AUTH-CODE-EXP}
-    suffix: ${MAIL-SUFFIX}
 
 jwt:
   secret_key: ${SECRET_KEY}
