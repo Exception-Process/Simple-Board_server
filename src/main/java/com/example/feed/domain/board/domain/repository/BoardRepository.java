@@ -12,4 +12,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     List<Board> findAllByOrderByCreatedAtDesc();
 
     Optional<Board> findByAdmin(User admin);
+
+    List<Board> findAllByTitleContaining(String search);
 }
