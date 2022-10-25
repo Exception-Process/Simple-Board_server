@@ -1,6 +1,5 @@
 package com.example.feed.domain.member.controller;
 
-import com.example.feed.domain.board.service.QueryJoinBoardMemberService;
 import com.example.feed.domain.member.controller.dto.response.MemberDetailResponse;
 import com.example.feed.domain.member.service.*;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 
     private final DeleteMemberService deleteMemberService;
-    private final QueryBoardMemberListService queryBoardMemberListService;
     private final QueryMyMemberInfoService queryMyMemberInfoService;
 
     @DeleteMapping("/{board-id}")

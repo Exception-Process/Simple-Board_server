@@ -19,17 +19,17 @@ import java.util.stream.Collectors;
 @Service
 public class QueryJoinBoardMemberService {
 
-    private final MemberRepository memberRepository;
     private final UserFacade userFacade;
     private final BoardFacade boardFacade;
+    private final MemberRepository memberRepository;
 
     @Transactional(readOnly = true)
     public MemberListResponse execute() {
 
-        User admin = userFacade.getUser();
-        Board board = boardFacade.getBoardByAdmin(admin);
+        User user = userFacade.getUser();
+        Board board = boardFacade.getBoardByAdmin(user);
 
-        List<MemberElement> memberList = memberRepository.findAllByBoardAndJoin(board, true)
+        List<MemberElement> memberList = memberRepository.findAllByBoardAndJoin(board, false)
                 .stream()
                 .map(this::memberListBuilder)
                 .collect(Collectors.toList());
@@ -41,6 +41,7 @@ public class QueryJoinBoardMemberService {
         return MemberElement.builder()
                 .id(member.getId())
                 .name(member.getName())
+                .memberProfileImage(member.getMemberProfileImage())
                 .build();
     }
 }

@@ -3,12 +3,10 @@ package com.example.feed.domain.user.facade;
 import com.example.feed.domain.user.domain.AuthCode;
 import com.example.feed.domain.user.domain.repository.AuthCodeRepository;
 import com.example.feed.domain.user.exception.BadAuthCodeException;
-import com.example.feed.domain.user.exception.BadEmailException;
 import com.example.feed.domain.user.exception.UnverifiedEmailException;
 import com.example.feed.global.jms.JmsProperties;
 import com.example.feed.global.jms.JmsUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.SqlReturnType;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;

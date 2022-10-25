@@ -11,17 +11,18 @@ import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
-public class PermitBoardMemberService {
+public class UnPermitBoardMemberService {
 
     private final MemberFacade memberFacade;
     private final MemberRepository memberRepository;
     private final BoardFacade boardFacade;
-    private final BoardRepository boardRepository;
     private final UserFacade userFacade;
 
+    @Transactional
     public void execute(Long memberId) {
 
         User user = userFacade.getUser();
@@ -31,9 +32,6 @@ public class PermitBoardMemberService {
         if (!member.getBoard().equals(board))
             throw BadAdminException.EXCEPTION;
 
-        member.permitJoin();
-        board.addBoardMemberCounts();
-        memberRepository.save(member);
-        boardRepository.save(board);
+        memberRepository.delete(member);
     }
 }
