@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCode {
 
-    BAD_EMAIL(400, "Bad Email Domain"),
+    IMAGE_UPLOAD_FAILED(400, "Image Upload Failed"),
 
     INVALID_PASSWORD(401, "invalid password"),
     EXPIRED_REFRESH_TOKEN(401, "Expired Refresh Token"),
@@ -28,6 +28,7 @@ public enum ErrorCode {
     MEMBER_NOT_FOUND(404, "Member Not Found"),
     FEED_NOT_LIKED(404, "feed not liked"),
     COMMENT_NOT_FOUND(404, "Comment Not Found"),
+    IMAGE_VALUE_NOT_FOUND(404, "Image Value Not Found"),
 
     USER_ALREADY_EXIST(409, "User Already Exist"),
     LIKE_ALREADY_EXIST(409, "Like Already Exist"),
