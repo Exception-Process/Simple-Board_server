@@ -27,20 +27,26 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false)
     private Integer boardMemberCounts;
 
+    @Column(nullable = false)
+    private String boardProfileImage;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "admin_id", nullable = false, unique = true)
     private User admin;
 
     @Builder
-    public Board(String title, String introduction, Integer boardMemberCounts, User admin) {
+    public Board(String title, String introduction, Integer boardMemberCounts, String boardProfileImage, User admin) {
         this.title = title;
         this.introduction = introduction;
         this.boardMemberCounts = boardMemberCounts;
+        this.boardProfileImage = boardProfileImage;
         this.admin = admin;
     }
 
-    public void update(String introduction) {
+    public void update(String introduction, String boardProfileImage) {
         this.introduction = introduction;
+        this.boardProfileImage = boardProfileImage;
+
     }
 
     public void addBoardMemberCounts() {
