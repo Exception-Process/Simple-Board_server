@@ -9,7 +9,8 @@ import java.util.Optional;
 
 public interface FeedRepository extends JpaRepository<Feed, Long> {
 
-    List<Feed> findAllByBoard(Board board);
+    List<Feed> findAllByBoardOrderByCreatedAtDesc(Board board);
 
     Optional<Feed> findByIdAndBoard(Long id, Board board);
+    List<Feed> findAllByBoardAndTitleContaining(Board board, String titleSearch);
 }

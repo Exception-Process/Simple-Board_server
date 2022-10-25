@@ -10,4 +10,5 @@ public class BoardElement {
     private Long boardId;
     private String title;
     private String adminName;
+    private Integer boardMemberCounts;
 }

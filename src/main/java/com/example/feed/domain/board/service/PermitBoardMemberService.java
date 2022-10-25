@@ -1,6 +1,7 @@
 package com.example.feed.domain.board.service;
 
 import com.example.feed.domain.board.domain.Board;
+import com.example.feed.domain.board.domain.repository.BoardRepository;
 import com.example.feed.domain.board.exception.BadAdminException;
 import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.board.controller.dto.request.PermitBoardMemberRequest;
@@ -19,6 +20,7 @@ public class PermitBoardMemberService {
     private final MemberFacade memberFacade;
     private final MemberRepository memberRepository;
     private final BoardFacade boardFacade;
+    private final BoardRepository boardRepository;
     private final UserFacade userFacade;
 
     public void execute(PermitBoardMemberRequest request) {
@@ -31,6 +33,8 @@ public class PermitBoardMemberService {
             throw BadAdminException.EXCEPTION;
 
         member.permitJoin();
+        board.addBoardMemberCounts();
         memberRepository.save(member);
+        boardRepository.save(board);
     }
 }

@@ -26,6 +26,7 @@ public class CreateBoardService {
         Board board = boardRepository.save(Board.builder()
                 .title(request.getTitle())
                 .introduction(request.getIntroduction())
+                .boardMemberCounts(1)
                 .admin(user)
                 .build()
         );

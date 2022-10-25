@@ -5,7 +5,6 @@ import com.example.feed.domain.like.domain.Like;
 import com.example.feed.domain.like.domain.repository.LikeRepository;
 import com.example.feed.domain.like.exception.FeedNotLikedException;
 import com.example.feed.domain.member.domain.Member;
-import com.example.feed.domain.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

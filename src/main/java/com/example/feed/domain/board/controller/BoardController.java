@@ -1,9 +1,6 @@
 package com.example.feed.domain.board.controller;
 
-import com.example.feed.domain.board.controller.dto.request.CreateBoardRequest;
-import com.example.feed.domain.board.controller.dto.request.JoinBoardMemberRequest;
-import com.example.feed.domain.board.controller.dto.request.PermitBoardMemberRequest;
-import com.example.feed.domain.board.controller.dto.request.UpdateBoardRequest;
+import com.example.feed.domain.board.controller.dto.request.*;
 import com.example.feed.domain.board.controller.dto.response.BoardDetailResponse;
 import com.example.feed.domain.board.controller.dto.response.BoardListResponse;
 import com.example.feed.domain.board.service.*;
@@ -28,6 +25,7 @@ public class BoardController {
     private final JoinBoardMemberService joinBoardMemberService;
     private final PermitBoardMemberService permitBoardMemberService;
     private final QueryJoinBoardMemberService queryJoinBoardMemberService;
+    private final SearchBoardService searchBoardService;
 
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -73,5 +71,10 @@ public class BoardController {
     @GetMapping("/join/member")
     public MemberListResponse getJoinMemberList() {
         return queryJoinBoardMemberService.execute();
+    }
+
+    @GetMapping("/search")
+    public BoardListResponse searchList(@RequestBody @Valid SearchBoardRequest request) {
+        return searchBoardService.execute(request);
     }
 }
