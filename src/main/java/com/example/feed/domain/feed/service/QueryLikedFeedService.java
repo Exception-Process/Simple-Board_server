@@ -4,7 +4,6 @@ import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.feed.controller.dto.response.FeedElement;
 import com.example.feed.domain.feed.controller.dto.response.FeedListResponse;
-import com.example.feed.domain.feed.domain.Feed;
 import com.example.feed.domain.like.domain.Like;
 import com.example.feed.domain.like.domain.repository.LikeRepository;
 import com.example.feed.domain.member.domain.Member;
