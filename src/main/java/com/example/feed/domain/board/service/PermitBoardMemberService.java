@@ -4,7 +4,6 @@ import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.board.domain.repository.BoardRepository;
 import com.example.feed.domain.board.exception.BadAdminException;
 import com.example.feed.domain.board.facade.BoardFacade;
-import com.example.feed.domain.board.controller.dto.request.PermitBoardMemberRequest;
 import com.example.feed.domain.member.domain.Member;
 import com.example.feed.domain.member.domain.repository.MemberRepository;
 import com.example.feed.domain.member.facade.MemberFacade;
@@ -23,10 +22,10 @@ public class PermitBoardMemberService {
     private final BoardRepository boardRepository;
     private final UserFacade userFacade;
 
-    public void execute(PermitBoardMemberRequest request) {
+    public void execute(Long memberId) {
 
         User user = userFacade.getUser();
-        Member member = memberFacade.getMemberById(request.getMemberId());
+        Member member = memberFacade.getMemberById(memberId);
         Board board = boardFacade.getBoardByAdmin(user);
 
         if (!member.getBoard().equals(board))
