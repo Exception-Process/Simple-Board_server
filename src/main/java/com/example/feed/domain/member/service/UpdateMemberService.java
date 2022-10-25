@@ -27,7 +27,7 @@ public class UpdateMemberService {
         Board board = boardFacade.getBoardById(boardId);
         Member member = memberFacade.getMemberByBoardAndUser(board, user);
 
-        member.update(request.getName());
+        member.update(request.getName(), request.getMemberProfileImage());
         memberRepository.save(member);
     }
 }

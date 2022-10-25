@@ -6,6 +6,7 @@ import com.example.feed.domain.board.controller.dto.response.BoardListResponse;
 import com.example.feed.domain.board.service.*;
 import com.example.feed.domain.board.service.PermitBoardMemberService;
 import com.example.feed.domain.member.controller.dto.response.MemberListResponse;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +25,10 @@ public class BoardController {
     private final DeleteBoardService deleteBoardService;
     private final JoinBoardMemberService joinBoardMemberService;
     private final PermitBoardMemberService permitBoardMemberService;
+    private final QueryBoardMemberService queryBoardMemberService;
     private final QueryJoinBoardMemberService queryJoinBoardMemberService;
     private final SearchBoardService searchBoardService;
+    private final UnPermitBoardMemberService unPermitBoardMemberService;
 
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -45,9 +48,9 @@ public class BoardController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/{board-id}")
-    public void update(@RequestBody @Valid UpdateBoardRequest request, @PathVariable("board-id") Long id) {
-        updateBoardService.execute(request, id);
+    @PatchMapping
+    public void update(@RequestBody @Valid UpdateBoardRequest request) {
+        updateBoardService.execute(request);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -63,18 +66,29 @@ public class BoardController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/permit")
-    public void permit(@RequestBody @Valid PermitBoardMemberRequest request) {
-        permitBoardMemberService.execute(request);
+    @PostMapping("/permit/{member-id}")
+    public void permit(@PathVariable("member-id") Long memberId) {
+        permitBoardMemberService.execute(memberId);
     }
 
-    @GetMapping("/join/member")
-    public MemberListResponse getJoinMemberList() {
-        return queryJoinBoardMemberService.execute();
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/permit/{member-id}")
+    public void unPermit(@PathVariable("member-id") Long memberId) {
+        unPermitBoardMemberService.execute(memberId);
+    }
+
+    @GetMapping("/member")
+    public MemberListResponse getMemberList() {
+        return queryBoardMemberService.execute();
     }
 
     @GetMapping("/search")
     public BoardListResponse searchList(@RequestBody @Valid SearchBoardRequest request) {
         return searchBoardService.execute(request);
+    }
+
+    @GetMapping("/join")
+    public MemberListResponse joinMember() {
+        return queryJoinBoardMemberService.execute();
     }
 }

@@ -19,12 +19,12 @@ public class UpdateBoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public void execute(UpdateBoardRequest request, Long id) {
+    public void execute(UpdateBoardRequest request) {
 
         User admin = userFacade.getUser();
         Board board = boardFacade.getBoardByAdmin(admin);
 
-        board.update(request.getIntroduction());
+        board.update(request.getIntroduction(), request.getBoardProfileImage());
         boardRepository.save(board);
     }
 }

@@ -34,14 +34,18 @@ public class Member {
     private Authority authority;
 
     @Column(nullable = false)
+    private String memberProfileImage;
+
+    @Column(nullable = false)
     private boolean join;
 
     @Builder
-    public Member(User user, Board board, String name, Authority authority, boolean join) {
+    public Member(User user, Board board, String name, Authority authority, String memberProfileImage, boolean join) {
         this.user = user;
         this.board = board;
         this.name = name;
         this.authority = authority;
+        this.memberProfileImage = memberProfileImage;
         this.join = join;
     }
 
@@ -49,7 +53,8 @@ public class Member {
         this.join = true;
     }
 
-    public void update(String name) {
+    public void update(String name, String memberProfileImage) {
         this.name = name;
+        this.memberProfileImage = memberProfileImage;
     }
 }

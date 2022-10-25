@@ -11,4 +11,5 @@ public class MemberElement {
 
     private Long id;
     private String name;
+    private String memberProfileImage;
 }
