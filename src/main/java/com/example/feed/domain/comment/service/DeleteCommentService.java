@@ -14,11 +14,7 @@ public class DeleteCommentService {
     private final CommentRepository commentRepository;
 
     public void execute(Long commentId) {
-<<<<<<< Updated upstream
-        Comment comment = commentFacade.getComment(id);
-=======
         Comment comment = commentFacade.getComment(commentId);
->>>>>>> Stashed changes
         commentRepository.delete(comment);
     }
 }
