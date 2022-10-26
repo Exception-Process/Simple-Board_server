@@ -71,8 +71,8 @@ public class BoardController {
         permitBoardMemberService.execute(memberId);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/permit/{member-id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/permit/{member-id}")
     public void unPermit(@PathVariable("member-id") Long memberId) {
         unPermitBoardMemberService.execute(memberId);
     }
