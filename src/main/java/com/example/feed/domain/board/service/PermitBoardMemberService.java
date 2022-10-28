@@ -9,6 +9,7 @@ import com.example.feed.domain.member.domain.repository.MemberRepository;
 import com.example.feed.domain.member.facade.MemberFacade;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
+import com.example.feed.infrastructure.fcm.FCMFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,7 @@ public class PermitBoardMemberService {
     private final BoardFacade boardFacade;
     private final BoardRepository boardRepository;
     private final UserFacade userFacade;
+    private final FCMFacade fcmFacade;
 
     public void execute(Long memberId) {
 
@@ -35,5 +37,7 @@ public class PermitBoardMemberService {
         board.addBoardMemberCounts();
         memberRepository.save(member);
         boardRepository.save(board);
+
+        fcmFacade.sendPermitNotification(member, board);
     }
 }
