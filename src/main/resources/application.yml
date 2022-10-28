@@ -57,3 +57,6 @@ jwt:
   refresh_exp: ${REFRESH_EXP}
   header: ${HEADER}
   prefix: ${PREFIX}
+
+fcm:
+  path: ${FCM_PATH}
