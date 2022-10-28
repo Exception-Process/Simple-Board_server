@@ -24,7 +24,9 @@ bin/
 *.ipr
 out/
 !**/src/main/**/out/
+!**/src/main/resources/firebase.json
 !**/src/test/**/out/
+
 
 ### NetBeans ###
 /nbproject/private/
