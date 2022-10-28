@@ -40,7 +40,6 @@ public class QueryFeedListService {
                 .title(feed.getTitle())
                 .memberName(feed.getMember().getName())
                 .createdAt(feed.getCreatedAt())
-                .imageUrl(feed.getFeedImage())
                 .build();
     }
 }

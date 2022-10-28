@@ -21,4 +21,7 @@ public class UpdateFeedRequest {
 
     @NotNull(message = "널 포함 불가")
     private boolean nonMemberShowing;
+
+    @NotBlank(message = "공백, 널 포함 불가")
+    private String imageUrl;
 }
