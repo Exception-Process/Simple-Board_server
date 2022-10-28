@@ -13,4 +13,5 @@ public class FeedElement {
     private String title;
     private LocalDateTime createdAt;
     private String memberName;
+    private String imageUrl;
 }

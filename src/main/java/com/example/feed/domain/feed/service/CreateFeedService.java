@@ -34,6 +34,7 @@ public class CreateFeedService {
                 .content(request.getContent())
                 .nonMemberShowing(request.isNonMemberShowing())
                 .likeCounts(0)
+                .feedImage(request.getImageUrl())
                 .member(member)
                 .board(board)
                 .build());

@@ -11,4 +11,5 @@ public class BoardElement {
     private String title;
     private String adminName;
     private Integer boardMemberCounts;
+    private String imageUrl;
 }

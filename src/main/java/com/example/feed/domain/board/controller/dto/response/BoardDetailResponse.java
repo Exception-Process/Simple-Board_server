@@ -15,4 +15,5 @@ public class BoardDetailResponse {
     private Integer boardMemberCounts;
     private String adminName;
     private LocalDateTime createdAt;
+    private String imageUrl;
 }
