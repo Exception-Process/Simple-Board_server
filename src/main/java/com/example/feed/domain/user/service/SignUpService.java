@@ -29,6 +29,7 @@ public class SignUpService {
                 .email(request.getEmail())
                 .name(request.getName())
                 .password(passwordEncoder.encode(request.getPassword()))
+                .deviceToken(request.getDeviceToken())
                 .build());
     }
 }
