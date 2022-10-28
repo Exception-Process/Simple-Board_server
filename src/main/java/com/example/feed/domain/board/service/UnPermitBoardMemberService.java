@@ -9,6 +9,7 @@ import com.example.feed.domain.member.domain.repository.MemberRepository;
 import com.example.feed.domain.member.facade.MemberFacade;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
+import com.example.feed.infrastructure.fcm.FCMFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ public class UnPermitBoardMemberService {
     private final MemberRepository memberRepository;
     private final BoardFacade boardFacade;
     private final UserFacade userFacade;
+    private final FCMFacade fcmFacade;
 
     @Transactional
     public void execute(Long memberId) {
@@ -32,6 +34,7 @@ public class UnPermitBoardMemberService {
         if (!member.getBoard().equals(board))
             throw BadAdminException.EXCEPTION;
 
+        fcmFacade.sendUnPermitNotification(member, board);
         memberRepository.delete(member);
     }
 }

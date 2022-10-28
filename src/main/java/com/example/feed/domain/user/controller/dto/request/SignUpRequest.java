@@ -24,4 +24,6 @@ public class SignUpRequest {
     @Pattern(regexp = "(?=.*[a-z])(?=.*[0-9])(?=.*[~!@#$%^&*()_+-=?/])[a-zA-Z0-9~!@#$%^&*()_+-=?/]{8,30}$", message = "비밀번호는는 8자에서 30자 사이입니다.")
     private String password;
 
+    @NotBlank(message = "device token은 공백이나 널을 포함할 수 없습니다.")
+    private String deviceToken;
 }

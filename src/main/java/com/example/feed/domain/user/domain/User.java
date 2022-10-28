@@ -27,15 +27,19 @@ public class User {
     @Column(length = 10, nullable = false)
     private String name;
 
+    @Column
+    private String deviceToken;
+
     @ColumnDefault(DefaultImage.USER_PROFILE_IMAGE)
     @Column(nullable = false)
     private String userProfileImage;
 
     @Builder
-    public User(String email, String password, String name, String userProfileImage) {
+    public User(String email, String password, String name, String deviceToken, String userProfileImage) {
         this.email = email;
         this.password = password;
         this.name = name;
+        this.deviceToken = deviceToken;
         this.userProfileImage = userProfileImage;
     }
 

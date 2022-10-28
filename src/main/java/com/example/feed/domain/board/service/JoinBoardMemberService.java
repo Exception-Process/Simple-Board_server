@@ -8,7 +8,7 @@ import com.example.feed.domain.member.domain.repository.MemberRepository;
 import com.example.feed.domain.member.domain.types.Authority;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
-import com.example.feed.infrastructure.image.DefaultImage;
+import com.example.feed.infrastructure.fcm.FCMFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +19,14 @@ public class JoinBoardMemberService {
     private final MemberRepository memberRepository;
     private final UserFacade userFacade;
     private final BoardFacade boardFacade;
+    private final FCMFacade fcmFacade;
 
     public void execute(JoinBoardMemberRequest request, Long boardId) {
 
         User user = userFacade.getUser();
         Board board = boardFacade.getBoardById(boardId);
 
-        memberRepository.save(Member.builder()
+        Member member = memberRepository.save(Member.builder()
                 .board(board)
                 .user(user)
                 .name(request.getName())
@@ -34,5 +35,7 @@ public class JoinBoardMemberService {
                 .join(false)
                 .build()
         );
+
+        fcmFacade.sendJoinNotification(member, board);
     }
 }
