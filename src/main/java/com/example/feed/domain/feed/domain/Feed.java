@@ -31,7 +31,7 @@ public class Feed extends BaseTimeEntity {
     @Column(nullable = false)
     private Integer likeCounts;
 
-    @Column(nullable = false)
+    @Column
     private String feedImage;
 
     @ManyToOne(fetch = FetchType.LAZY)
