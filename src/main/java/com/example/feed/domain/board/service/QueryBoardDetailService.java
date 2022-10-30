@@ -24,6 +24,7 @@ public class QueryBoardDetailService {
                 .introduction(board.getIntroduction())
                 .boardMemberCounts(board.getBoardMemberCounts())
                 .adminName(board.getAdmin().getName())
+                .imageUrl(board.getBoardProfileImage())
                 .createdAt(board.getCreatedAt())
                 .build();
     }

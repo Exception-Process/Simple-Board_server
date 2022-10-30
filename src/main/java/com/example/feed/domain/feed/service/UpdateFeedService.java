@@ -23,10 +23,11 @@ public class UpdateFeedService {
         String title = request.getTitle();
         String content = request.getContent();
         boolean nonMemberShowing = request.isNonMemberShowing();
+        String imageUrl = request.getImageUrl();
 
         Feed feed = feedFacade.getFeed(feedId);
 
-        feed.update(title, content, nonMemberShowing);
+        feed.update(title, content, nonMemberShowing, imageUrl);
         feedRepository.save(feed);
     }
 }

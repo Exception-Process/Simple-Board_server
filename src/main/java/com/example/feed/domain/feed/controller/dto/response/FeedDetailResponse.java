@@ -13,4 +13,5 @@ public class FeedDetailResponse {
     private String content;
     private LocalDateTime createdAt;
     private String memberName;
+    private String imageUrl;
 }

@@ -27,6 +27,7 @@ public class QueryFeedDetailService {
                 .content(feed.getContent())
                 .memberName(feed.getMember().getName())
                 .createdAt(feed.getCreatedAt())
+                .imageUrl(feed.getFeedImage())
                 .build();
     }
 }

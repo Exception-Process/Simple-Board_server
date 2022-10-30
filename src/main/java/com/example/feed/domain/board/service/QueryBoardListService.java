@@ -34,6 +34,7 @@ public class QueryBoardListService {
                 .title(board.getTitle())
                 .adminName(board.getAdmin().getName())
                 .boardMemberCounts(board.getBoardMemberCounts())
+                .imageUrl(board.getBoardProfileImage())
                 .build();
     }
 }

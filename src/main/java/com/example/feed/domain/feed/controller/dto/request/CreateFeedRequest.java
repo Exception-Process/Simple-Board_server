@@ -21,4 +21,7 @@ public class CreateFeedRequest {
 
     @NotNull(message = "널 포함 불가")
     private boolean nonMemberShowing;
+
+    @NotBlank(message = "널 혹은 공백 포함 불가")
+    private String imageUrl;
 }
