@@ -1,6 +1,7 @@
 package com.example.feed.global.security.auth;
 
 import com.example.feed.domain.user.domain.repository.UserRepository;
+import com.example.feed.domain.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,6 +18,6 @@ public class AuthDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email)
                 .map(AuthDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException("유저 못찾음"));
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 }
