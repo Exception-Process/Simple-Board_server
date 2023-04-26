@@ -1,6 +1,7 @@
 package com.example.feed.domain.image.service;
 
 import com.example.feed.domain.image.controller.dto.response.ImageUrlResponse;
+import com.example.feed.infrastructure.image.ImageUtil;
 import com.example.feed.infrastructure.image.s3.S3Facade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,12 +14,12 @@ import java.util.stream.Collectors;
 @Service
 public class UpLoadImageService {
 
-    private final S3Facade s3Facade;
+    private final ImageUtil imageUtil;
 
     public ImageUrlResponse execute(List<MultipartFile> images) {
         List<String> imageUrl = images
                 .stream()
-                .map(s3Facade::uploadImage)
+                .map(imageUtil::uploadImage)
                 .collect(Collectors.toList());
         
         return new ImageUrlResponse(imageUrl);
