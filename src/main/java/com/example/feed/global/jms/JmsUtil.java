@@ -23,7 +23,7 @@ public class JmsUtil {
 
             messageHelper.setTo(email);
             messageHelper.setFrom(jmsProperties.getUsername());
-            messageHelper.setSubject("[Simple Board 메일인증]");
+            messageHelper.setSubject("[메일인증]");
 
             String text = "인증코드 : " + authenticationCode;
             messageHelper.setText(text);
