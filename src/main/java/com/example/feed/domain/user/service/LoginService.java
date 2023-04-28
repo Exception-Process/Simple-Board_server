@@ -1,4 +1,4 @@
-package com.example.feed.domain.auth.service;
+package com.example.feed.domain.user.service;
 
 import com.example.feed.domain.auth.controller.dto.request.LoginRequest;
 import com.example.feed.domain.auth.controller.dto.response.TokenResponse;
@@ -6,6 +6,7 @@ import com.example.feed.domain.auth.exception.InvalidPasswordException;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
 import com.example.feed.global.security.jwt.JwtTokenProvider;
+import com.example.feed.global.security.jwt.TokenType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,20 +20,20 @@ public class LoginService {
     private final PasswordEncoder passwordEncoder;
 
     public TokenResponse execute(LoginRequest request) {
-        String email = request.getEmail();
-        String password = request.getPassword();
+        User user = userFacade.getUserByEmail(request.getEmail());
 
-        User user = userFacade.getUserByEmail(email);
-
-        if (!passwordEncoder.matches(password, user.getPassword()))
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw InvalidPasswordException.EXCEPTION;
+        }
 
-        String accessToken = jwtTokenProvider.generateAccessToken(email);
-        String refreshToken = jwtTokenProvider.generateRefreshToken(email);
+        String accessToken = jwtTokenProvider.generateAccessToken(request.getEmail());
+        String refreshToken = jwtTokenProvider.generateRefreshToken(request.getEmail());
 
         return TokenResponse.builder()
                 .accessToken(accessToken)
+                .accessExp(jwtTokenProvider.getExp(TokenType.ACCESS))
                 .refreshToken(refreshToken)
+                .refreshExp(jwtTokenProvider.getExp(TokenType.REFRESH))
                 .build();
     }
 }
