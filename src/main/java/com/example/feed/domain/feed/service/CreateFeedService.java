@@ -4,7 +4,7 @@ import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.feed.controller.dto.request.CreateFeedRequest;
 import com.example.feed.domain.feed.domain.Feed;
-import com.example.feed.domain.feed.domain.repository.FeedRepository;
+import com.example.feed.domain.feed.domain.repository.FeedJpaRepository;
 import com.example.feed.domain.member.domain.Member;
 import com.example.feed.domain.member.facade.MemberFacade;
 import com.example.feed.domain.user.domain.User;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CreateFeedService {
 
-    private final FeedRepository feedRepository;
+    private final FeedJpaRepository feedJpaRepository;
     private final BoardFacade boardFacade;
     private final UserFacade userFacade;
     private final MemberFacade memberFacade;
@@ -29,7 +29,7 @@ public class CreateFeedService {
         Board board = boardFacade.getBoardById(boardId);
         Member member = memberFacade.getMemberByBoardAndUser(board, user);
 
-        feedRepository.save(Feed.builder()
+        feedJpaRepository.save(Feed.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
                 .nonMemberShowing(request.isNonMemberShowing())

@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface LikeRepository extends JpaRepository<Likes, Long> {
+public interface LikeJpaRepository extends JpaRepository<Likes, Long> {
 
     boolean existsByMemberAndFeed(Member member, Feed feed);
     Optional<Likes> findByMemberAndFeed(Member member, Feed feed);

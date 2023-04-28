@@ -3,8 +3,8 @@ package com.example.feed.domain.board.service;
 import com.example.feed.domain.board.controller.dto.request.CreateBoardRequest;
 import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.member.domain.Member;
-import com.example.feed.domain.board.domain.repository.BoardRepository;
-import com.example.feed.domain.member.domain.repository.MemberRepository;
+import com.example.feed.domain.board.domain.repository.BoardJpaRepository;
+import com.example.feed.domain.member.domain.repository.MemberJpaRepository;
 import com.example.feed.domain.member.domain.types.Authority;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
@@ -16,14 +16,14 @@ import org.springframework.stereotype.Service;
 public class CreateBoardService {
 
     private final UserFacade userFacade;
-    private final BoardRepository boardRepository;
-    private final MemberRepository memberRepository;
+    private final BoardJpaRepository boardJpaRepository;
+    private final MemberJpaRepository memberJpaRepository;
 
     public void execute(CreateBoardRequest request) {
 
         User user = userFacade.getUser();
 
-        Board board = boardRepository.save(Board.builder()
+        Board board = boardJpaRepository.save(Board.builder()
                 .title(request.getTitle())
                 .introduction(request.getIntroduction())
                 .boardMemberCounts(1)
@@ -32,7 +32,7 @@ public class CreateBoardService {
                 .build()
         );
 
-        memberRepository.save(Member.builder()
+        memberJpaRepository.save(Member.builder()
                 .user(user)
                 .board(board)
                 .authority(Authority.ADMIN)

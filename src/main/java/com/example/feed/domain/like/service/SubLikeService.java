@@ -4,7 +4,7 @@ import com.example.feed.domain.feed.domain.Feed;
 import com.example.feed.domain.feed.facade.FeedFacade;
 import com.example.feed.domain.like.controller.dto.response.LikeResponse;
 import com.example.feed.domain.like.domain.Likes;
-import com.example.feed.domain.like.domain.repository.LikeRepository;
+import com.example.feed.domain.like.domain.repository.LikeJpaRepository;
 import com.example.feed.domain.like.exception.FeedNotLikedException;
 import com.example.feed.domain.like.facade.LikeFacade;
 import com.example.feed.domain.member.domain.Member;
@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class SubLikeService {
 
-    private final LikeRepository likeRepository;
+    private final LikeJpaRepository likeJpaRepository;
     private final UserFacade userFacade;
     private final FeedFacade feedFacade;
     private final LikeFacade likeFacade;
@@ -37,7 +37,7 @@ public class SubLikeService {
             throw FeedNotLikedException.EXCEPTION;
         }
 
-        likeRepository.delete(likes);
+        likeJpaRepository.delete(likes);
         feed.subLikeCounts();
         return new LikeResponse(feed.getLikeCounts());
     }

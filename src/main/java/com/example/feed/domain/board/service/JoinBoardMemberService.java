@@ -4,7 +4,7 @@ import com.example.feed.domain.board.controller.dto.request.JoinBoardMemberReque
 import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.member.domain.Member;
-import com.example.feed.domain.member.domain.repository.MemberRepository;
+import com.example.feed.domain.member.domain.repository.MemberJpaRepository;
 import com.example.feed.domain.member.domain.types.Authority;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class JoinBoardMemberService {
 
-    private final MemberRepository memberRepository;
+    private final MemberJpaRepository memberJpaRepository;
     private final UserFacade userFacade;
     private final BoardFacade boardFacade;
     private final FCMFacade fcmFacade;
@@ -26,7 +26,7 @@ public class JoinBoardMemberService {
         User user = userFacade.getUser();
         Board board = boardFacade.getBoardById(boardId);
 
-        Member member = memberRepository.save(Member.builder()
+        Member member = memberJpaRepository.save(Member.builder()
                 .board(board)
                 .user(user)
                 .name(request.getName())

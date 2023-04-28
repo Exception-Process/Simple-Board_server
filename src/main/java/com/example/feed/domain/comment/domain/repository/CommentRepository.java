@@ -1,12 +1,11 @@
 package com.example.feed.domain.comment.domain.repository;
 
-import com.example.feed.domain.comment.domain.Comment;
-import com.example.feed.domain.feed.domain.Feed;
-import org.springframework.data.jpa.repository.JpaRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+@RequiredArgsConstructor
+@Repository
+public class CommentRepository {
 
-public interface CommentRepository extends JpaRepository<Comment, Long> {
-
-    List<Comment> findAllByFeedOrderByCreatedAtDesc(Feed feed);
+    private final CommentJpaRepository commentJpaRepository;
 }

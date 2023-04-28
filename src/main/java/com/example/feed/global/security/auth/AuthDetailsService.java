@@ -1,6 +1,6 @@
 package com.example.feed.global.security.auth;
 
-import com.example.feed.domain.user.domain.repository.UserRepository;
+import com.example.feed.domain.user.domain.repository.UserJpaRepository;
 import com.example.feed.domain.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final UserJpaRepository userJpaRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
+        return userJpaRepository.findByEmail(email)
                 .map(AuthDetails::new)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }

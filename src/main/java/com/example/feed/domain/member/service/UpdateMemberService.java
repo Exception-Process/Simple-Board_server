@@ -1,11 +1,10 @@
 package com.example.feed.domain.member.service;
 
-import com.example.feed.domain.board.controller.dto.request.UpdateBoardRequest;
 import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.member.controller.dto.request.UpdateMemberRequest;
 import com.example.feed.domain.member.domain.Member;
-import com.example.feed.domain.member.domain.repository.MemberRepository;
+import com.example.feed.domain.member.domain.repository.MemberJpaRepository;
 import com.example.feed.domain.member.facade.MemberFacade;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
@@ -19,7 +18,7 @@ public class UpdateMemberService {
     private final UserFacade userFacade;
     private final MemberFacade memberFacade;
     private final BoardFacade boardFacade;
-    private final MemberRepository memberRepository;
+    private final MemberJpaRepository memberJpaRepository;
 
     public void execute(Long boardId, UpdateMemberRequest request) {
 
@@ -28,6 +27,6 @@ public class UpdateMemberService {
         Member member = memberFacade.getMemberByBoardAndUser(board, user);
 
         member.update(request.getName(), request.getMemberProfileImage());
-        memberRepository.save(member);
+        memberJpaRepository.save(member);
     }
 }

@@ -5,8 +5,7 @@ import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.feed.controller.dto.response.FeedElement;
 import com.example.feed.domain.feed.controller.dto.response.FeedListResponse;
 import com.example.feed.domain.feed.domain.Feed;
-import com.example.feed.domain.feed.domain.repository.FeedRepository;
-import com.example.feed.domain.user.facade.UserFacade;
+import com.example.feed.domain.feed.domain.repository.FeedJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 public class QueryFeedListService {
 
-    private final FeedRepository feedRepository;
+    private final FeedJpaRepository feedJpaRepository;
     private final BoardFacade boardFacade;
 
     @Transactional(readOnly = true)
@@ -26,7 +25,7 @@ public class QueryFeedListService {
 
         Board board = boardFacade.getBoardById(boardId);
 
-        List<FeedElement> feedList = feedRepository.findAllByBoardOrderByCreatedAtDesc(board)
+        List<FeedElement> feedList = feedJpaRepository.findAllByBoardOrderByCreatedAtDesc(board)
                 .stream()
                 .map(this::feedListBuild)
                 .collect(Collectors.toList());

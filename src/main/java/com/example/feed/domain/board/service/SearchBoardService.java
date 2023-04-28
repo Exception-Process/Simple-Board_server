@@ -4,7 +4,7 @@ import com.example.feed.domain.board.controller.dto.request.SearchBoardRequest;
 import com.example.feed.domain.board.controller.dto.response.BoardElement;
 import com.example.feed.domain.board.controller.dto.response.BoardListResponse;
 import com.example.feed.domain.board.domain.Board;
-import com.example.feed.domain.board.domain.repository.BoardRepository;
+import com.example.feed.domain.board.domain.repository.BoardJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 @Service
 public class SearchBoardService {
 
-    private final BoardRepository boardRepository;
+    private final BoardJpaRepository boardJpaRepository;
 
     public BoardListResponse execute(SearchBoardRequest request) {
 
-        List<BoardElement> boardList = boardRepository.findAllByTitleContaining(request.getSearch())
+        List<BoardElement> boardList = boardJpaRepository.findAllByTitleContaining(request.getSearch())
                 .stream()
                 .map(this::buildBoardList)
                 .collect(Collectors.toList());

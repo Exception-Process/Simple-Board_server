@@ -1,8 +1,7 @@
 package com.example.feed.domain.feed.facade;
 
-import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.feed.domain.Feed;
-import com.example.feed.domain.feed.domain.repository.FeedRepository;
+import com.example.feed.domain.feed.domain.repository.FeedJpaRepository;
 import com.example.feed.domain.feed.exception.FeedNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -11,10 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class FeedFacade {
 
-    private final FeedRepository feedRepository;
+    private final FeedJpaRepository feedJpaRepository;
 
     public Feed getFeed(Long id) {
-        return feedRepository.findById(id)
+        return feedJpaRepository.findById(id)
                 .orElseThrow(() -> FeedNotFoundException.EXCEPTION);
     }
 }

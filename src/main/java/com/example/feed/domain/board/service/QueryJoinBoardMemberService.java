@@ -5,7 +5,7 @@ import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.member.controller.dto.response.MemberElement;
 import com.example.feed.domain.member.controller.dto.response.MemberListResponse;
 import com.example.feed.domain.member.domain.Member;
-import com.example.feed.domain.member.domain.repository.MemberRepository;
+import com.example.feed.domain.member.domain.repository.MemberJpaRepository;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ public class QueryJoinBoardMemberService {
 
     private final UserFacade userFacade;
     private final BoardFacade boardFacade;
-    private final MemberRepository memberRepository;
+    private final MemberJpaRepository memberJpaRepository;
 
     @Transactional(readOnly = true)
     public MemberListResponse execute() {
@@ -29,7 +29,7 @@ public class QueryJoinBoardMemberService {
         User user = userFacade.getUser();
         Board board = boardFacade.getBoardByAdmin(user);
 
-        List<MemberElement> memberList = memberRepository.findAllByBoardAndApproved(board, false)
+        List<MemberElement> memberList = memberJpaRepository.findAllByBoardAndApproved(board, false)
                 .stream()
                 .map(this::memberListBuilder)
                 .collect(Collectors.toList());

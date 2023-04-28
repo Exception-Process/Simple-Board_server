@@ -1,7 +1,7 @@
 package com.example.feed.domain.board.service;
 
 import com.example.feed.domain.board.domain.Board;
-import com.example.feed.domain.board.domain.repository.BoardRepository;
+import com.example.feed.domain.board.domain.repository.BoardJpaRepository;
 import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class DeleteBoardService {
 
-    private final BoardRepository boardRepository;
+    private final BoardJpaRepository boardJpaRepository;
     private final BoardFacade boardFacade;
     private final UserFacade userFacade;
 
@@ -22,6 +22,6 @@ public class DeleteBoardService {
 
         User admin = userFacade.getUser();
         Board board = boardFacade.getBoardByAdmin(admin);
-        boardRepository.delete(board);
+        boardJpaRepository.delete(board);
     }
 }

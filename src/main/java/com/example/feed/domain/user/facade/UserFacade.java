@@ -1,7 +1,7 @@
 package com.example.feed.domain.user.facade;
 
 import com.example.feed.domain.user.domain.User;
-import com.example.feed.domain.user.domain.repository.UserRepository;
+import com.example.feed.domain.user.domain.repository.UserJpaRepository;
 import com.example.feed.domain.user.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserFacade {
 
-    private final UserRepository userRepository;
+    private final UserJpaRepository userJpaRepository;
 
     public boolean emailIsExist(String email) {
-        return userRepository.findByEmail(email).isPresent();
+        return userJpaRepository.findByEmail(email).isPresent();
     }
 
     public User getUser() {
@@ -23,7 +23,7 @@ public class UserFacade {
     }
 
     public User getUserByEmail(String email) {
-        return userRepository.findByEmail(email)
+        return userJpaRepository.findByEmail(email)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
     }
 }

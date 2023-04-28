@@ -5,7 +5,7 @@ import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.feed.controller.dto.response.FeedElement;
 import com.example.feed.domain.feed.controller.dto.response.FeedListResponse;
 import com.example.feed.domain.like.domain.Likes;
-import com.example.feed.domain.like.domain.repository.LikeRepository;
+import com.example.feed.domain.like.domain.repository.LikeJpaRepository;
 import com.example.feed.domain.member.domain.Member;
 import com.example.feed.domain.member.facade.MemberFacade;
 import com.example.feed.domain.user.domain.User;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 public class QueryLikedFeedService {
 
-    private final LikeRepository likeRepository;
+    private final LikeJpaRepository likeJpaRepository;
     private final UserFacade userFacade;
     private final BoardFacade boardFacade;
     private final MemberFacade memberFacade;
@@ -33,7 +33,7 @@ public class QueryLikedFeedService {
         Board board = boardFacade.getBoardById(boardId);
         Member member = memberFacade.getMemberByBoardAndUser(board, user);
 
-        List<FeedElement> feedList = likeRepository.findAllByMember(member)
+        List<FeedElement> feedList = likeJpaRepository.findAllByMember(member)
                 .stream()
                 .map(this::feedListBuild)
                 .collect(Collectors.toList());

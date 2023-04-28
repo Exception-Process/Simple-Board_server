@@ -4,7 +4,7 @@ import com.example.feed.domain.feed.domain.Feed;
 import com.example.feed.domain.feed.facade.FeedFacade;
 import com.example.feed.domain.like.controller.dto.response.LikeResponse;
 import com.example.feed.domain.like.domain.Likes;
-import com.example.feed.domain.like.domain.repository.LikeRepository;
+import com.example.feed.domain.like.domain.repository.LikeJpaRepository;
 import com.example.feed.domain.like.exception.LikeAlreadyExistException;
 import com.example.feed.domain.like.facade.LikeFacade;
 import com.example.feed.domain.member.domain.Member;
@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AddLikeService {
 
-    private final LikeRepository likeRepository;
+    private final LikeJpaRepository likeJpaRepository;
     private final FeedFacade feedFacade;
     private final UserFacade userFacade;
     private final LikeFacade likeFacade;
@@ -36,7 +36,7 @@ public class AddLikeService {
             throw LikeAlreadyExistException.EXCEPTION;
         }
 
-        likeRepository.save(Likes.builder()
+        likeJpaRepository.save(Likes.builder()
                 .member(member)
                 .feed(feed)
                 .build());

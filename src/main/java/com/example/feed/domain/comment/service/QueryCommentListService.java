@@ -3,7 +3,7 @@ package com.example.feed.domain.comment.service;
 import com.example.feed.domain.comment.controller.dto.response.CommentElement;
 import com.example.feed.domain.comment.controller.dto.response.CommentListResponse;
 import com.example.feed.domain.comment.domain.Comment;
-import com.example.feed.domain.comment.domain.repository.CommentRepository;
+import com.example.feed.domain.comment.domain.repository.CommentJpaRepository;
 import com.example.feed.domain.feed.domain.Feed;
 import com.example.feed.domain.feed.facade.FeedFacade;
 import lombok.RequiredArgsConstructor;
@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
 @Service
 public class QueryCommentListService {
 
-    private final CommentRepository commentRepository;
+    private final CommentJpaRepository commentJpaRepository;
     private final FeedFacade feedFacade;
 
     public CommentListResponse execute(Long feedId) {
 
         Feed feed = feedFacade.getFeed(feedId);
 
-        List<CommentElement> commentList = commentRepository.findAllByFeedOrderByCreatedAtDesc(feed)
+        List<CommentElement> commentList = commentJpaRepository.findAllByFeedOrderByCreatedAtDesc(feed)
                 .stream()
                 .map(this::commentListBuild)
                 .collect(Collectors.toList());
