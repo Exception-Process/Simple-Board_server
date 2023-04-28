@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class JwtTokenProvider {
     private final RefreshTokenRepository refreshTokenRepository;
 
     public String generateAccessToken(String email) {
-        return generateToken(email, "access", jwtProperty.getAccessExp());
+        return generateToken(email, TokenType.ACCESS.name(), jwtProperty.getAccessExp());
     }
 
     public String generateRefreshToken(String email) {
@@ -38,6 +39,13 @@ public class JwtTokenProvider {
                 .build());
 
         return refreshToken;
+    }
+
+    public LocalDateTime getExp(TokenType type) {
+        return switch (type) {
+            case ACCESS -> LocalDateTime.now().plusSeconds(jwtProperty.getAccessExp());
+            case REFRESH -> LocalDateTime.now().plusSeconds(jwtProperty.getRefreshExp());
+        };
     }
 
     public String generateToken(String email, String type, Long exp) {
