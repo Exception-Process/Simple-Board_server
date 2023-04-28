@@ -1,8 +1,10 @@
 package com.example.feed.domain.auth.controller;
 
-import com.example.feed.domain.auth.controller.dto.request.LoginRequest;
 import com.example.feed.domain.auth.controller.dto.response.TokenResponse;
-import com.example.feed.domain.auth.service.LoginService;
+import com.example.feed.domain.auth.service.SendSignUpAuthCodeService;
+import com.example.feed.domain.auth.service.VerifyAuthCodeService;
+import com.example.feed.domain.user.controller.dto.request.SendAuthCodeRequest;
+import com.example.feed.domain.user.controller.dto.request.VerifyAuthCodeRequest;
 import com.example.feed.domain.auth.service.TokenRefreshService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,17 +17,24 @@ import javax.validation.Valid;
 @RestController
 public class AuthController {
 
-    private final LoginService loginService;
     private final TokenRefreshService tokenRefreshService;
-
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/login")
-    public TokenResponse login(@RequestBody @Valid LoginRequest request) {
-        return loginService.execute(request);
-    }
+    private final SendSignUpAuthCodeService sendSignUpAuthCodeService;
+    private final VerifyAuthCodeService verifyAuthCodeService;
 
     @PutMapping("/reissue")
     public TokenResponse reissue(@RequestHeader("Refresh-Token") String refreshToken) {
         return tokenRefreshService.execute(refreshToken);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/code")
+    public void sendAuthCode(@RequestBody @Valid SendAuthCodeRequest request) {
+        sendSignUpAuthCodeService.execute(request);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/code")
+    public void verifyAuthCode(@RequestBody @Valid VerifyAuthCodeRequest request) {
+        verifyAuthCodeService.execute(request);
     }
 }
