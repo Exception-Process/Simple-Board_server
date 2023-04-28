@@ -18,20 +18,20 @@ public class User {
     @Id
     private Long id;
 
-    @Column(length = 10, nullable = false)
+    @Column(columnDefinition = "VARCHAR(30)", nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "CHAR(60)",nullable = false)
     private String password;
 
-    @Column(length = 10, nullable = false)
+    @Column(columnDefinition = "VARCHAR(10)", nullable = false)
     private String name;
 
-    @Column
+    @Column(columnDefinition = "VARCHAR(200)")
     private String deviceToken;
 
     @ColumnDefault(DefaultImage.USER_PROFILE_IMAGE)
-    @Column(nullable = false)
+    @Column(columnDefinition = "VARCHAR(400)", nullable = false)
     private String userProfileImage;
 
     @Builder

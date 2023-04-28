@@ -18,16 +18,16 @@ public class Board extends BaseTimeEntity {
     @Id
     private Long id;
 
-    @Column(nullable = false, length = 20)
+    @Column(columnDefinition = "VARCHAR(20)", nullable = false)
     private String title;
 
-    @Column(nullable = false, length = 100)
+    @Column(columnDefinition = "VARCHAR(100)", nullable = false)
     private String introduction;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "INT", nullable = false)
     private Integer boardMemberCounts;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "VARCHAR(400)", nullable = false)
     private String boardProfileImage;
 
     @ManyToOne(fetch = FetchType.LAZY)

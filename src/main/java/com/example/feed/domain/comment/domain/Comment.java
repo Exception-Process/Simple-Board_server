@@ -20,14 +20,14 @@ public class Comment extends BaseTimeEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "feed_id", nullable = false)
     private Feed feed;
 
-    @Column(length = 300, nullable = false)
+    @Column(columnDefinition = "VARCHAR(300)", nullable = false)
     private String comment;
 
     @Builder

@@ -8,7 +8,15 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -27,30 +35,30 @@ public class Member {
     @JoinColumn(name = "board_id", nullable = false)
     private Board board;
 
-    @Column(nullable = false, length = 20)
+    @Column(columnDefinition = "VARCHAR(20)", nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "VARCHAR(5)", nullable = false)
     private Authority authority;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "VARCHAR(400)", nullable = false)
     private String memberProfileImage;
 
-    @Column(nullable = false)
-    private boolean join;
+    @Column(columnDefinition = "TINYINT(1)", nullable = false)
+    private boolean approved;
 
     @Builder
-    public Member(User user, Board board, String name, Authority authority, String memberProfileImage, boolean join) {
+    public Member(User user, Board board, String name, Authority authority, String memberProfileImage, boolean approved) {
         this.user = user;
         this.board = board;
         this.name = name;
         this.authority = authority;
         this.memberProfileImage = memberProfileImage;
-        this.join = join;
+        this.approved = approved;
     }
 
     public void permitJoin() {
-        this.join = true;
+        this.approved = true;
     }
 
     public void update(String name, String memberProfileImage) {

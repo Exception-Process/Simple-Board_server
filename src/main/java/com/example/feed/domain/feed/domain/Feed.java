@@ -19,19 +19,19 @@ public class Feed extends BaseTimeEntity {
     @Id
     private Long id;
 
-    @Column(length = 20, nullable = false)
+    @Column(columnDefinition = "VARCHAR(20)", nullable = false)
     private String title;
 
-    @Column(length = 1000, nullable = false)
+    @Column(columnDefinition = "VARCHAR(1000)", nullable = false)
     private String content;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "TINYINT(1)", nullable = false)
     private boolean nonMemberShowing;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "INT", nullable = false)
     private Integer likeCounts;
 
-    @Column
+    @Column(columnDefinition = "VARCHAR(400)")
     private String feedImage;
 
     @ManyToOne(fetch = FetchType.LAZY)
