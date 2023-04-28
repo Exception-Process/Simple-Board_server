@@ -29,7 +29,7 @@ public class QueryJoinBoardMemberService {
         User user = userFacade.getUser();
         Board board = boardFacade.getBoardByAdmin(user);
 
-        List<MemberElement> memberList = memberRepository.findAllByBoardAndJoin(board, false)
+        List<MemberElement> memberList = memberRepository.findAllByBoardAndApproved(board, false)
                 .stream()
                 .map(this::memberListBuilder)
                 .collect(Collectors.toList());

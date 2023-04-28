@@ -3,7 +3,7 @@ package com.example.feed.domain.like.service;
 import com.example.feed.domain.feed.domain.Feed;
 import com.example.feed.domain.feed.facade.FeedFacade;
 import com.example.feed.domain.like.controller.dto.response.LikeResponse;
-import com.example.feed.domain.like.domain.Like;
+import com.example.feed.domain.like.domain.Likes;
 import com.example.feed.domain.like.domain.repository.LikeRepository;
 import com.example.feed.domain.like.exception.FeedNotLikedException;
 import com.example.feed.domain.like.facade.LikeFacade;
@@ -31,13 +31,13 @@ public class SubLikeService {
         User user = userFacade.getUser();
         Feed feed = feedFacade.getFeed(feedId);
         Member member = memberFacade.getMemberByBoardAndUser(feed.getBoard(), user);
-        Like like = likeFacade.getLike(member, feed);
+        Likes likes = likeFacade.getLike(member, feed);
 
         if (!likeFacade.checkLiked(member, feed)) {
             throw FeedNotLikedException.EXCEPTION;
         }
 
-        likeRepository.delete(like);
+        likeRepository.delete(likes);
         feed.subLikeCounts();
         return new LikeResponse(feed.getLikeCounts());
     }

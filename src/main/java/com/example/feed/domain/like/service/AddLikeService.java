@@ -3,7 +3,7 @@ package com.example.feed.domain.like.service;
 import com.example.feed.domain.feed.domain.Feed;
 import com.example.feed.domain.feed.facade.FeedFacade;
 import com.example.feed.domain.like.controller.dto.response.LikeResponse;
-import com.example.feed.domain.like.domain.Like;
+import com.example.feed.domain.like.domain.Likes;
 import com.example.feed.domain.like.domain.repository.LikeRepository;
 import com.example.feed.domain.like.exception.LikeAlreadyExistException;
 import com.example.feed.domain.like.facade.LikeFacade;
@@ -36,7 +36,7 @@ public class AddLikeService {
             throw LikeAlreadyExistException.EXCEPTION;
         }
 
-        likeRepository.save(Like.builder()
+        likeRepository.save(Likes.builder()
                 .member(member)
                 .feed(feed)
                 .build());

@@ -4,7 +4,7 @@ import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.feed.controller.dto.response.FeedElement;
 import com.example.feed.domain.feed.controller.dto.response.FeedListResponse;
-import com.example.feed.domain.like.domain.Like;
+import com.example.feed.domain.like.domain.Likes;
 import com.example.feed.domain.like.domain.repository.LikeRepository;
 import com.example.feed.domain.member.domain.Member;
 import com.example.feed.domain.member.facade.MemberFacade;
@@ -41,12 +41,12 @@ public class QueryLikedFeedService {
         return new FeedListResponse(feedList);
     }
 
-    private FeedElement feedListBuild(Like like) {
+    private FeedElement feedListBuild(Likes likes) {
         return FeedElement.builder()
-                .feedId(like.getFeed().getId())
-                .title(like.getFeed().getTitle())
-                .memberName(like.getMember().getName())
-                .createdAt(like.getFeed().getCreatedAt())
+                .feedId(likes.getFeed().getId())
+                .title(likes.getFeed().getTitle())
+                .memberName(likes.getMember().getName())
+                .createdAt(likes.getFeed().getCreatedAt())
                 .build();
     }
 }

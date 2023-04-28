@@ -32,7 +32,7 @@ public class JoinBoardMemberService {
                 .name(request.getName())
                 .authority(Authority.USER)
                 .memberProfileImage(user.getUserProfileImage())
-                .join(false)
+                .approved(false)
                 .build()
         );
 

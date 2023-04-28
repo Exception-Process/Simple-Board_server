@@ -36,7 +36,7 @@ public class CreateBoardService {
                 .user(user)
                 .board(board)
                 .authority(Authority.ADMIN)
-                .join(true)
+                .approved(true)
                 .name(request.getAdminName())
                 .memberProfileImage(user.getUserProfileImage())
                 .build()

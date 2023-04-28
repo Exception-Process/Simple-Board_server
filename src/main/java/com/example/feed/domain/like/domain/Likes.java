@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Like extends BaseTimeEntity {
+public class Likes extends BaseTimeEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -28,7 +28,7 @@ public class Like extends BaseTimeEntity {
     private Feed feed;
 
     @Builder
-    public Like(Member member, Feed feed) {
+    public Likes(Member member, Feed feed) {
         this.member = member;
         this.feed = feed;
     }

@@ -26,7 +26,7 @@ public enum ErrorCode {
     IMAGE_VALUE_NOT_FOUND(404, "Image Value Not Found"),
 
     USER_ALREADY_EXIST(409, "User Already Exist"),
-    LIKE_ALREADY_EXIST(409, "Like Already Exist"),
+    LIKE_ALREADY_EXIST(409, "Likes Already Exist"),
     FEED_NOT_LIKED(409, "feed not liked");
 
     private final int status;

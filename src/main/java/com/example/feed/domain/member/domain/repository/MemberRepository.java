@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    List<Member> findAllByBoardAndJoin(Board board, boolean join);
+    List<Member> findAllByBoardAndApproved(Board board, boolean join);
     Optional<Member> findByUserAndBoard(User user, Board board);
     List<Member> findAllByBoard(Board board);
 }
