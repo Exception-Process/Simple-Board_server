@@ -1,6 +1,6 @@
 package com.example.feed.domain.user.facade;
 
-import com.example.feed.domain.user.domain.AuthCode;
+import com.example.feed.domain.auth.domain.AuthCode;
 import com.example.feed.domain.user.domain.repository.AuthCodeRepository;
 import com.example.feed.domain.user.exception.BadAuthCodeException;
 import com.example.feed.domain.user.exception.UnverifiedEmailException;

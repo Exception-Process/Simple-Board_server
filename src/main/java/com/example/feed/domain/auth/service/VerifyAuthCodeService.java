@@ -1,7 +1,6 @@
-package com.example.feed.domain.user.service;
+package com.example.feed.domain.auth.service;
 
 import com.example.feed.domain.user.controller.dto.request.VerifyAuthCodeRequest;
-import com.example.feed.domain.user.domain.AuthCode;
 import com.example.feed.domain.user.facade.AuthCodeFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

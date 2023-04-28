@@ -1,4 +1,4 @@
-package com.example.feed.domain.user.domain;
+package com.example.feed.domain.auth.domain;
 
 import lombok.Builder;
 import lombok.Getter;
