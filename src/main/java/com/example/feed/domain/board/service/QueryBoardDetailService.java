@@ -11,11 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class QueryBoardDetailService {
 
-    private BoardFacade boardFacade;
+    private final BoardFacade boardFacade;
 
     @Transactional(readOnly = true)
     public BoardDetailResponse execute(Long id) {
-
         Board board = boardFacade.getBoardById(id);
 
         return BoardDetailResponse.builder()

@@ -23,8 +23,6 @@ public class UserController {
     private final LoginService loginService;
     private final SignUpService signUpService;
 
-
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/login")
     public TokenResponse login(@RequestBody @Valid LoginRequest request) {

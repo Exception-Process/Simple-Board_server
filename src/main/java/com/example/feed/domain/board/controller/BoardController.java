@@ -73,9 +73,9 @@ public class BoardController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{board-id}")
-    public void delete(@PathVariable("board-id") Long id) {
-        deleteBoardService.execute(id);
+    @DeleteMapping
+    public void delete() {
+        deleteBoardService.execute();
     }
 
     @ResponseStatus(HttpStatus.CREATED)

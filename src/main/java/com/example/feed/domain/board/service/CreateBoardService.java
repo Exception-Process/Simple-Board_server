@@ -10,6 +10,7 @@ import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -19,27 +20,29 @@ public class CreateBoardService {
     private final BoardJpaRepository boardJpaRepository;
     private final MemberJpaRepository memberJpaRepository;
 
+    @Transactional
     public void execute(CreateBoardRequest request) {
-
         User user = userFacade.getUser();
 
-        Board board = boardJpaRepository.save(Board.builder()
-                .title(request.getTitle())
-                .introduction(request.getIntroduction())
-                .boardMemberCounts(1)
-                .boardProfileImage(request.getBoardProfileImage())
-                .admin(user)
-                .build()
+        Board board = boardJpaRepository.save(
+                Board.builder()
+                        .title(request.getTitle())
+                        .introduction(request.getIntroduction())
+                        .boardMemberCounts(1)
+                        .boardProfileImage(request.getBoardProfileImage())
+                        .admin(user)
+                        .build()
         );
 
-        memberJpaRepository.save(Member.builder()
-                .user(user)
-                .board(board)
-                .authority(Authority.ADMIN)
-                .approved(true)
-                .name(request.getAdminName())
-                .memberProfileImage(user.getUserProfileImage())
-                .build()
+        memberJpaRepository.save(
+                Member.builder()
+                        .user(user)
+                        .board(board)
+                        .authority(Authority.ADMIN)
+                        .approved(true)
+                        .name(request.getAdminName())
+                        .memberProfileImage(user.getUserProfileImage())
+                        .build()
         );
     }
 }

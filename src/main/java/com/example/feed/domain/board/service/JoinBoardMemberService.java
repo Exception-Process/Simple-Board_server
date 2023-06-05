@@ -11,6 +11,7 @@ import com.example.feed.domain.user.facade.UserFacade;
 import com.example.feed.infrastructure.fcm.FCMFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
@@ -21,8 +22,8 @@ public class JoinBoardMemberService {
     private final BoardFacade boardFacade;
     private final FCMFacade fcmFacade;
 
+    @Transactional
     public void execute(JoinBoardMemberRequest request, Long boardId) {
-
         User user = userFacade.getUser();
         Board board = boardFacade.getBoardById(boardId);
 

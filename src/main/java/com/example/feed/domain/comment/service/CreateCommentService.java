@@ -22,15 +22,16 @@ public class CreateCommentService {
     private final FeedFacade feedFacade;
 
     public void execute(CreateCommentRequest request, Long feedId) {
-
         User user = userFacade.getUser();
         Feed feed = feedFacade.getFeed(feedId);
         Member member = memberFacade.getMemberByBoardAndUser(feed.getBoard(), user);
 
-        commentJpaRepository.save(Comment.builder()
-                .member(member)
-                .feed(feed)
-                .comment(request.getComment())
-                .build());
+        commentJpaRepository.save(
+                Comment.builder()
+                        .member(member)
+                        .feed(feed)
+                        .comment(request.getComment())
+                        .build()
+        );
     }
 }

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -25,14 +24,12 @@ public class QueryJoinBoardMemberService {
 
     @Transactional(readOnly = true)
     public MemberListResponse execute() {
-
         User user = userFacade.getUser();
         Board board = boardFacade.getBoardByAdmin(user);
-
         List<MemberElement> memberList = memberJpaRepository.findAllByBoardAndApproved(board, false)
                 .stream()
                 .map(this::memberListBuilder)
-                .collect(Collectors.toList());
+                .toList();
 
         return new MemberListResponse(memberList);
     }

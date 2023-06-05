@@ -15,6 +15,7 @@ public class DeleteCommentService {
 
     public void execute(Long commentId) {
         Comment comment = commentFacade.getComment(commentId);
+
         commentJpaRepository.delete(comment);
     }
 }

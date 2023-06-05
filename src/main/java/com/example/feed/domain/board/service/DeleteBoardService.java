@@ -18,10 +18,10 @@ public class DeleteBoardService {
     private final UserFacade userFacade;
 
     @Transactional
-    public void execute(Long id) {
-
+    public void execute() {
         User admin = userFacade.getUser();
         Board board = boardFacade.getBoardByAdmin(admin);
+
         boardJpaRepository.delete(board);
     }
 }

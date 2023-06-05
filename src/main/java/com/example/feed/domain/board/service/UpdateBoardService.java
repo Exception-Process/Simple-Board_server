@@ -2,7 +2,6 @@ package com.example.feed.domain.board.service;
 
 import com.example.feed.domain.board.controller.dto.request.UpdateBoardRequest;
 import com.example.feed.domain.board.domain.Board;
-import com.example.feed.domain.board.domain.repository.BoardJpaRepository;
 import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;
@@ -16,15 +15,15 @@ public class UpdateBoardService {
 
     private final BoardFacade boardFacade;
     private final UserFacade userFacade;
-    private final BoardJpaRepository boardJpaRepository;
 
     @Transactional
     public void execute(UpdateBoardRequest request) {
-
         User admin = userFacade.getUser();
         Board board = boardFacade.getBoardByAdmin(admin);
 
-        board.update(request.getIntroduction(), request.getBoardProfileImage());
-        boardJpaRepository.save(board);
+        board.update(
+                request.getIntroduction(),
+                request.getBoardProfileImage()
+        );
     }
 }

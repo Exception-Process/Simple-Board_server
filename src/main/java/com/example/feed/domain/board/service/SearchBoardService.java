@@ -7,9 +7,9 @@ import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.board.domain.repository.BoardJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -17,12 +17,12 @@ public class SearchBoardService {
 
     private final BoardJpaRepository boardJpaRepository;
 
+    @Transactional(readOnly = true)
     public BoardListResponse execute(SearchBoardRequest request) {
-
         List<BoardElement> boardList = boardJpaRepository.findAllByTitleContaining(request.getSearch())
                 .stream()
                 .map(this::buildBoardList)
-                .collect(Collectors.toList());
+                .toList();
 
         return new BoardListResponse(boardList);
     }

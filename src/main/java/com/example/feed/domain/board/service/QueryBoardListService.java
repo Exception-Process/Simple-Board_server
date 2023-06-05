@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -19,11 +18,10 @@ public class QueryBoardListService {
 
     @Transactional(readOnly = true)
     public BoardListResponse execute() {
-
         List<BoardElement> boardList = boardJpaRepository.findAllByOrderByCreatedAtDesc()
                 .stream()
                 .map(this::buildBoardList)
-                .collect(Collectors.toList());
+                .toList();
 
         return new BoardListResponse(boardList);
     }

@@ -25,7 +25,6 @@ public class UnPermitBoardMemberService {
 
     @Transactional
     public void execute(Long memberId) {
-
         User user = userFacade.getUser();
         Member member = memberFacade.getMemberById(memberId);
         Board board = boardFacade.getBoardByAdmin(user);
