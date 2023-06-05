@@ -2,8 +2,8 @@ package com.example.feed.domain.board.service;
 
 import com.example.feed.domain.board.controller.dto.request.CreateBoardRequest;
 import com.example.feed.domain.board.domain.Board;
-import com.example.feed.domain.member.domain.Member;
 import com.example.feed.domain.board.domain.repository.BoardJpaRepository;
+import com.example.feed.domain.member.domain.Member;
 import com.example.feed.domain.member.domain.repository.MemberJpaRepository;
 import com.example.feed.domain.member.domain.types.Authority;
 import com.example.feed.domain.user.domain.User;

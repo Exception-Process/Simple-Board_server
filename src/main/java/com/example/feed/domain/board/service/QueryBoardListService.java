@@ -1,7 +1,7 @@
 package com.example.feed.domain.board.service;
 
-import com.example.feed.domain.board.controller.dto.response.BoardListResponse;
 import com.example.feed.domain.board.controller.dto.response.BoardElement;
+import com.example.feed.domain.board.controller.dto.response.BoardListResponse;
 import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.board.domain.repository.BoardJpaRepository;
 import lombok.RequiredArgsConstructor;

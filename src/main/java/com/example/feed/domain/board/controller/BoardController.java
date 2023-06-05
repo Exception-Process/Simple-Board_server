@@ -1,15 +1,34 @@
 package com.example.feed.domain.board.controller;
 
-import com.example.feed.domain.board.controller.dto.request.*;
+import com.example.feed.domain.board.controller.dto.request.CreateBoardRequest;
+import com.example.feed.domain.board.controller.dto.request.JoinBoardMemberRequest;
+import com.example.feed.domain.board.controller.dto.request.SearchBoardRequest;
+import com.example.feed.domain.board.controller.dto.request.UpdateBoardRequest;
 import com.example.feed.domain.board.controller.dto.response.BoardDetailResponse;
 import com.example.feed.domain.board.controller.dto.response.BoardListResponse;
-import com.example.feed.domain.board.service.*;
+import com.example.feed.domain.board.service.CreateBoardService;
+import com.example.feed.domain.board.service.DeleteBoardService;
+import com.example.feed.domain.board.service.JoinBoardMemberService;
 import com.example.feed.domain.board.service.PermitBoardMemberService;
+import com.example.feed.domain.board.service.QueryBoardDetailService;
+import com.example.feed.domain.board.service.QueryBoardListService;
+import com.example.feed.domain.board.service.QueryBoardMemberService;
+import com.example.feed.domain.board.service.QueryJoinBoardMemberService;
+import com.example.feed.domain.board.service.SearchBoardService;
+import com.example.feed.domain.board.service.UnPermitBoardMemberService;
+import com.example.feed.domain.board.service.UpdateBoardService;
 import com.example.feed.domain.member.controller.dto.response.MemberListResponse;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
