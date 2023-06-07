@@ -8,6 +8,7 @@ import com.example.feed.domain.feed.domain.Feed;
 import com.example.feed.domain.feed.facade.FeedFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,10 +20,9 @@ public class QueryCommentListService {
     private final CommentJpaRepository commentJpaRepository;
     private final FeedFacade feedFacade;
 
+    @Transactional(readOnly = true)
     public CommentListResponse execute(Long feedId) {
-
         Feed feed = feedFacade.getFeed(feedId);
-
         List<CommentElement> commentList = commentJpaRepository.findAllByFeedOrderByCreatedAtDesc(feed)
                 .stream()
                 .map(this::commentListBuild)
