@@ -16,11 +16,11 @@ public class QueryFeedDetailService {
 
     @Transactional(readOnly = true)
     public FeedDetailResponse execute(Long feedId) {
-
         Feed feed = feedFacade.getFeed(feedId);
 
-        if (!feed.isNonMemberShowing())
+        if (!feed.isNonMemberShowing()) {
             throw CannotSeeFeedException.EXCEPTION;
+        }
 
         return FeedDetailResponse.builder()
                 .title(feed.getTitle())

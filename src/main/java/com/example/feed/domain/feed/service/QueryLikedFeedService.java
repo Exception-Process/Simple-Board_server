@@ -28,7 +28,6 @@ public class QueryLikedFeedService {
 
     @Transactional(readOnly = true)
     public FeedListResponse execute(Long boardId) {
-
         User user = userFacade.getUser();
         Board board = boardFacade.getBoardById(boardId);
         Member member = memberFacade.getMemberByBoardAndUser(board, user);

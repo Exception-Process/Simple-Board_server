@@ -13,11 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class UpdateFeedService {
 
     private final FeedFacade feedFacade;
-    private final FeedJpaRepository feedJpaRepository;
 
     @Transactional
     public void execute(UpdateFeedRequest request, Long feedId) {
-
         String title = request.getTitle();
         String content = request.getContent();
         boolean nonMemberShowing = request.isNonMemberShowing();
@@ -26,6 +24,5 @@ public class UpdateFeedService {
         Feed feed = feedFacade.getFeed(feedId);
 
         feed.update(title, content, nonMemberShowing, imageUrl);
-        feedJpaRepository.save(feed);
     }
 }

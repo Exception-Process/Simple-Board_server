@@ -9,6 +9,7 @@ import com.example.feed.domain.feed.domain.Feed;
 import com.example.feed.domain.feed.domain.repository.FeedJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,8 +21,8 @@ public class SearchFeedService {
     private final FeedJpaRepository feedJpaRepository;
     private final BoardFacade boardFacade;
 
+    @Transactional(readOnly = true)
     public FeedListResponse execute(Long boardId, SearchFeedRequest request) {
-
         Board board = boardFacade.getBoardById(boardId);
 
         List<FeedElement> feedList = feedJpaRepository.findAllByBoardAndTitleContaining(board, request.getTitleSearch())
