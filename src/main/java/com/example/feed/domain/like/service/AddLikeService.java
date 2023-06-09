@@ -27,7 +27,6 @@ public class AddLikeService {
 
     @Transactional
     public LikeResponse execute(Long feedId) {
-
         User user = userFacade.getUser();
         Feed feed = feedFacade.getFeed(feedId);
         Member member = memberFacade.getMemberByBoardAndUser(feed.getBoard(), user);
@@ -40,6 +39,7 @@ public class AddLikeService {
                 .member(member)
                 .feed(feed)
                 .build());
+
         feed.addLikeCounts();
 
         return new LikeResponse(feed.getLikeCounts());
