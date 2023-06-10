@@ -20,7 +20,6 @@ public class DeleteMemberService {
     private final MemberJpaRepository memberJpaRepository;
 
     public void execute(Long boardId) {
-
         User user = userFacade.getUser();
         Board board = boardFacade.getBoardById(boardId);
         Member member = memberFacade.getMemberByBoardAndUser(board, user);

@@ -19,7 +19,6 @@ public class QueryMyMemberInfoService {
     private final MemberFacade memberFacade;
 
     public MemberDetailResponse execute(Long boardId) {
-
         User user = userFacade.getUser();
         Board board = boardFacade.getBoardById(boardId);
         Member member = memberFacade.getMemberByBoardAndUser(board, user);

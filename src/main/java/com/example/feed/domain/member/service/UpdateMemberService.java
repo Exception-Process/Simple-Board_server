@@ -18,15 +18,12 @@ public class UpdateMemberService {
     private final UserFacade userFacade;
     private final MemberFacade memberFacade;
     private final BoardFacade boardFacade;
-    private final MemberJpaRepository memberJpaRepository;
 
     public void execute(Long boardId, UpdateMemberRequest request) {
-
         User user = userFacade.getUser();
         Board board = boardFacade.getBoardById(boardId);
         Member member = memberFacade.getMemberByBoardAndUser(board, user);
 
         member.update(request.getName(), request.getMemberProfileImage());
-        memberJpaRepository.save(member);
     }
 }
