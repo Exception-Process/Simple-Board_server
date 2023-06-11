@@ -18,18 +18,19 @@ public class SignUpService {
     private final PasswordEncoder passwordEncoder;
 
     public void execute(SignUpRequest request) {
-
         if (userJpaRepository.findByEmail(request.getEmail()).isPresent()) {
             throw UserAlreadyExistException.EXCEPTION;
         }
 
         authCodeFacade.checkIsVerified(request.getEmail());
 
-        userJpaRepository.save(User.builder()
-                .email(request.getEmail())
-                .name(request.getName())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .deviceToken(request.getDeviceToken())
-                .build());
+        userJpaRepository.save(
+                User.builder()
+                        .email(request.getEmail())
+                        .name(request.getName())
+                        .password(passwordEncoder.encode(request.getPassword()))
+                        .deviceToken(request.getDeviceToken())
+                        .build()
+        );
     }
 }

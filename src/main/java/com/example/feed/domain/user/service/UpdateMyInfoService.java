@@ -12,15 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UpdateMyInfoService {
 
-    private final UserJpaRepository userJpaRepository;
     private final UserFacade userFacade;
 
     @Transactional
     public void execute(UpdateMyInfoRequest request) {
-
         User user = userFacade.getUser();
 
         user.updateUser(request.getEmail(), request.getName(), request.getUserProfileImage());
-        userJpaRepository.save(user);
     }
 }
