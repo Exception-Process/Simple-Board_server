@@ -4,7 +4,6 @@ import com.example.feed.domain.board.domain.Board;
 import com.example.feed.domain.board.facade.BoardFacade;
 import com.example.feed.domain.member.controller.dto.request.UpdateMemberRequest;
 import com.example.feed.domain.member.domain.Member;
-import com.example.feed.domain.member.domain.repository.MemberJpaRepository;
 import com.example.feed.domain.member.facade.MemberFacade;
 import com.example.feed.domain.user.domain.User;
 import com.example.feed.domain.user.facade.UserFacade;

@@ -2,7 +2,6 @@ package com.example.feed.domain.user.service;
 
 import com.example.feed.domain.user.controller.dto.request.UpdateMyInfoRequest;
 import com.example.feed.domain.user.domain.User;
-import com.example.feed.domain.user.domain.repository.UserJpaRepository;
 import com.example.feed.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
