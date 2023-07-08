@@ -23,6 +23,7 @@ public class QueryFeedListService {
     @Transactional(readOnly = true)
     public FeedListResponse execute(Long boardId) {
         Board board = boardFacade.getBoardById(boardId);
+        
         List<FeedElement> feedList = feedJpaRepository.findAllByBoardOrderByCreatedAtDesc(board)
                 .stream()
                 .map(this::feedListBuild)
