@@ -26,7 +26,6 @@ public class JoinBoardMemberService {
     public void execute(JoinBoardMemberRequest request, Long boardId) {
         User user = userFacade.getUser();
         Board board = boardFacade.getBoardById(boardId);
-
         Member member = memberJpaRepository.save(Member.builder()
                 .board(board)
                 .user(user)
